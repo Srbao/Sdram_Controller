@@ -1,0 +1,44 @@
+module 	sdram_aref(
+	//system signals
+	input			clk			,
+	input			rst_n		,
+	//communicate with ARBIT
+	input			ref_en		,
+	output			ref_req		,
+	output			flag_ref_end,
+	//others
+	output	reg [ 3:0]	aref_cmd,
+	output	wire[11:0]	sdram_addr
+);
+
+//=========================================================\
+//***********Define Parameter and Internal Signals******
+//=========================================================/
+localparam	 DELAY_15US		=		750 - 1		;
+reg		[ 3:0]			cmd_cnt					;
+reg		[ 9:0]			ref_cnt					;
+
+//=========================================================\
+//*******************Main	Code***************************
+//=========================================================/
+always @(posedge clk or negedge rst_n)begin
+	if(!rst_n)
+
+end
+
+
+
+	
+	
+endmodule
+
+
+
+
+
+
+
+
+
+
+

@@ -30,7 +30,7 @@ reg 				ref_en					;
 wire	[ 3:0]		ref_cmd					;
 wire	[11:0]		ref_addr				;
 
-always @(posedge clk or negedge rst_n)begin
+always @()begin
 	if(!rst_n)
 		state <= IDLE						;
 	else case(state)

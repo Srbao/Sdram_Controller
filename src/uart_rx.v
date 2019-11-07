@@ -9,33 +9,33 @@ module uart_rx(
 
 );
 `ifndef SIM
-parameter    BAUD_END  = 5208 - 1 ;
+parameter    BAUD_END  = 5208 - 1 		;
 `else
-parameter    BAUD_END = 56 ;
+parameter    BAUD_END = 56 				;
 `endif
-parameter	 BAUD_M    = BAUD_END/2 - 1   ;
-parameter	 BIT_END   = 8;
-reg     rx_t				;
-reg		rx_tt				;
-reg 	rx_ttt				;
-reg		rx_flag				;
-reg  [12:0]   baud_cnt		;
-reg   [3:0]   bit_cnt		;
-reg 		  bit_flag		;
-
-wire 	neg_flag			;
-assign	neg_flag = ~rx_tt & rx_ttt;
+parameter	 BAUD_M    = BAUD_END/2 - 1 ;
+parameter	 BIT_END   = 8				;
+reg     rx_t							;
+reg		rx_tt							;
+reg 	rx_ttt							;
+reg		rx_flag							;
+reg  [12:0]   baud_cnt					;
+reg   [3:0]   bit_cnt					;
+reg 		  bit_flag					;
+			
+wire 	neg_flag						;
+assign	neg_flag = ~rx_tt & rx_ttt		;
 
 always @(posedge clk or negedge rst_n)begin
 	if(!rst_n)begin
-		rx_t    <= 0;
-		rx_tt	<= 0;
-		rx_ttt  <= 0;
+		rx_t    <= 0			;
+		rx_tt	<= 0			;
+		rx_ttt  <= 0			;
 	end
 	else begin
-		rx_t    <= rx232_rx  ;
-		rx_tt	<= rx_t		;
-		rx_ttt	<= rx_tt 	;
+		rx_t    <= rx232_rx  	;
+		rx_tt	<= rx_t			;
+		rx_ttt	<= rx_tt 		;
 	end
 		
 end 
@@ -43,16 +43,16 @@ end
 
 always @(posedge clk or negedge rst_n)begin
 	if(!rst_n)begin
-		baud_cnt <=0;
+		baud_cnt <=0			;
 	end
 	else if(baud_cnt==BAUD_END)begin
-		baud_cnt <= 0;
+		baud_cnt <= 0			;
 	end
 	else if(rx_flag)begin
 		baud_cnt <= baud_cnt + 1;
 	end
 	else
-		baud_cnt <= 0;
+		baud_cnt <= 0			;
 end
 
 always @(posedge clk or negedge rst_n)begin
