@@ -13,11 +13,11 @@ localparam		PRE	 = 4'b0010;
 localparam		AREF = 4'b0001;
 localparam		MSET = 4'b0000;	
 
-parameter 	        CNT_200US = 10_000;
+parameter 	        CNT_200US = 10_000 - 1;
 reg 	[ 13:0]		cnt_200us  ;
 wire				flag_200us ;
 reg     [ 3:0]		cnt_cmd	   ;
-always @(posedge clk or negedge rst_n)begin
+always @(posedge clk or negedge rst_n)begin   
 	if(!rst_n)
 		cnt_200us <= 0;
 	else if(flag_200us==0)
